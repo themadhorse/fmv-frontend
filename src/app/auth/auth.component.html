@@ -1,0 +1,25 @@
+<form #signin_form>
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <input type="email" id="form2Example1" class="form-control" #email/>
+    <label class="form-label" for="form2Example1">Email address</label>
+  </div>
+
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <input type="password" id="form2Example2" class="form-control" #password/>
+    <label class="form-label" for="form2Example2">Password</label>
+  </div>
+
+  <!-- Submit button -->
+  <button *ngIf="isSigningIn" type="button" class="btn btn-primary btn-block mb-4" style="width: 100%" (click)="onSubmit(email.value, password.value, true)">Sign in</button>
+
+  <button *ngIf="!isSigningIn" type="button" class="btn btn-primary btn-block mb-4" style="width: 100%" (click)="onSubmit(email.value, password.value, false)">Sign up</button>
+
+  <!-- Register buttons -->
+  <div class="text-center">
+    <p *ngIf="isSigningIn">Not a member? <a class="button" role="button" (click)="isSigningIn = false">Register</a></p>
+
+    <p *ngIf="!isSigningIn">Already a member? <a class="button" role="button" (click)="isSigningIn = true">Sign In</a></p>
+  </div>
+</form>
