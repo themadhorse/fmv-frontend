@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "financial-market-visualizer": {
+      "hosting": {
+        "fmv-frontend": [
+          "financial-market-visualizer"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "financial-market-visualizer"
+  }
+}
