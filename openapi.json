@@ -1,0 +1,611 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get User",
+                "operationId": "get_user_users_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Uid"
+                        },
+                        "name": "uid",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User document with relevant token id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserModel"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Create User",
+                "operationId": "create_user_users_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserModel"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created User document",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserModel"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Delete User",
+                "operationId": "delete_user_users_delete",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Uid"
+                        },
+                        "name": "uid",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful deletion"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/portfolio": {
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Remove Assets From User",
+                "operationId": "remove_assets_from_user_users_portfolio_delete",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Uid"
+                        },
+                        "name": "uid",
+                        "in": "query"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "items": {
+                                    "$ref": "#/components/schemas/Asset"
+                                },
+                                "type": "array",
+                                "title": "Stocks"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "List of updated stocks",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Asset"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Remove Assets From User Users Portfolio Delete"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Add Assets To User",
+                "operationId": "add_assets_to_user_users_portfolio_patch",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Uid"
+                        },
+                        "name": "uid",
+                        "in": "query"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "items": {
+                                    "$ref": "#/components/schemas/Asset"
+                                },
+                                "type": "array",
+                                "title": "Stocks"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "List of updated stocks",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Asset"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Add Assets To User Users Portfolio Patch"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/assets": {
+            "get": {
+                "tags": [
+                    "assets"
+                ],
+                "summary": "Get Asset Info",
+                "operationId": "get_asset_info_assets_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Asset Symbol Str"
+                        },
+                        "name": "asset_symbol_str",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Information of assets passed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AssetDailyData"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/assets/quote": {
+            "get": {
+                "tags": [
+                    "assets"
+                ],
+                "summary": "Get Asset Quote",
+                "operationId": "get_asset_quote_assets_quote_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Asset Symbol"
+                        },
+                        "name": "asset_symbol",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns recent information about an asset",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AssetQuote"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "summary": "Root",
+                "operationId": "root__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object",
+                                    "title": "Response Root  Get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Asset": {
+                "properties": {
+                    "symbol": {
+                        "type": "string",
+                        "title": "Symbol"
+                    },
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "title": "Quantity"
+                    },
+                    "asset_type": {
+                        "type": "string",
+                        "title": "Asset Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "symbol",
+                    "name",
+                    "quantity",
+                    "asset_type"
+                ],
+                "title": "Asset"
+            },
+            "AssetDailyData": {
+                "properties": {
+                    "metadata": {
+                        "$ref": "#/components/schemas/Metadata"
+                    },
+                    "time_series": {
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/TimeSeries"
+                        },
+                        "type": "object",
+                        "title": "Time Series"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "metadata",
+                    "time_series"
+                ],
+                "title": "AssetDailyData"
+            },
+            "AssetQuote": {
+                "properties": {
+                    "symbol": {
+                        "type": "string",
+                        "title": "Symbol"
+                    },
+                    "open": {
+                        "type": "number",
+                        "title": "Open"
+                    },
+                    "high": {
+                        "type": "number",
+                        "title": "High"
+                    },
+                    "low": {
+                        "type": "number",
+                        "title": "Low"
+                    },
+                    "price": {
+                        "type": "number",
+                        "title": "Price"
+                    },
+                    "volume": {
+                        "type": "integer",
+                        "title": "Volume"
+                    },
+                    "latest_trading_day": {
+                        "type": "string",
+                        "title": "Latest Trading Day"
+                    },
+                    "previous_close": {
+                        "type": "number",
+                        "title": "Previous Close"
+                    },
+                    "change": {
+                        "type": "number",
+                        "title": "Change"
+                    },
+                    "change_percent": {
+                        "type": "number",
+                        "title": "Change Percent"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "symbol",
+                    "open",
+                    "high",
+                    "low",
+                    "price",
+                    "volume",
+                    "latest_trading_day",
+                    "previous_close",
+                    "change",
+                    "change_percent"
+                ],
+                "title": "AssetQuote"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "Metadata": {
+                "properties": {
+                    "information": {
+                        "type": "string",
+                        "title": "Information"
+                    },
+                    "symbol": {
+                        "type": "string",
+                        "title": "Symbol"
+                    },
+                    "last_refreshed": {
+                        "type": "string",
+                        "title": "Last Refreshed"
+                    },
+                    "output_size": {
+                        "type": "string",
+                        "title": "Output Size"
+                    },
+                    "timezone": {
+                        "type": "string",
+                        "title": "Timezone"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "information",
+                    "symbol",
+                    "last_refreshed",
+                    "output_size",
+                    "timezone"
+                ],
+                "title": "Metadata"
+            },
+            "TimeSeries": {
+                "properties": {
+                    "open": {
+                        "type": "number",
+                        "title": "Open"
+                    },
+                    "high": {
+                        "type": "number",
+                        "title": "High"
+                    },
+                    "low": {
+                        "type": "number",
+                        "title": "Low"
+                    },
+                    "close": {
+                        "type": "number",
+                        "title": "Close"
+                    },
+                    "volume": {
+                        "type": "integer",
+                        "title": "Volume"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "open",
+                    "high",
+                    "low",
+                    "close",
+                    "volume"
+                ],
+                "title": "TimeSeries"
+            },
+            "UserModel": {
+                "properties": {
+                    "uid": {
+                        "type": "string",
+                        "title": "Uid",
+                        "default": "6548a98787d5b312f40d9d18"
+                    },
+                    "email": {
+                        "type": "string",
+                        "title": "Email"
+                    },
+                    "photoURL": {
+                        "type": "string",
+                        "title": "Photourl"
+                    },
+                    "emailVerified": {
+                        "type": "boolean",
+                        "title": "Emailverified"
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "title": "Displayname"
+                    },
+                    "portfolio": {
+                        "items": {
+                            "$ref": "#/components/schemas/Asset"
+                        },
+                        "type": "array",
+                        "title": "Portfolio",
+                        "description": "List of stocks in user's portfolio",
+                        "default": []
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "email",
+                    "photoURL",
+                    "emailVerified",
+                    "displayName"
+                ],
+                "title": "UserModel"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        }
+    }
+}

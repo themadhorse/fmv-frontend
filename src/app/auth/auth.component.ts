@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AssetsService } from '../api/services';
+import { BaseService } from '../api/base-service';
 
 @Component({
   selector: 'app-auth',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class AuthComponent implements OnInit {
   isSigningIn = true;
 
-  constructor() { }
+  constructor(private assetsService: AssetsService) { }
 
   ngOnInit(): void {
   }
